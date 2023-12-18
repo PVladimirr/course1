@@ -16,19 +16,12 @@ public class Step implements Comparable<Step>{
     private String text;
     private boolean isFinish;
 
-    /**
-     * Метод по представлению шага и запросу и получению информации о следующем шаге
-     * @return запрос на следующий шаг
-     */
+
     public int show() {
         System.out.println(this.text);
         return getAnswer();
     }
 
-    /**
-     * получение и корректировка (при необходимости) ответа пользователя
-     * @return корректный ответ пользователя
-     */
     private int getAnswer() {
         int value = -1;
         if (!isFinish) {

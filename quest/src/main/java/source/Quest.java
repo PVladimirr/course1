@@ -11,19 +11,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Quest {
-    /**
-     * ArrayList, содержащий в себе все квестовые ходы
-     */
+
     ArrayList<Step> quest;
 
-    /**
-     * В конструкторе производится считывание текстового файла (из папки resources), куда следует положить файл с квестом (инструкции по созданию квеста лежат в той же папке)
-     *
-     * @throws IOException
-     */
+
     public Quest() throws IOException {
         Scanner scanner = new Scanner(System.in);
-        boolean isCorrect = false;
+         boolean isCorrect = false;
         while (!isCorrect) { // проверка на существование такого квеста в папке
             System.out.println("Введите имя квеста:");
             String res = scanner.nextLine();
@@ -40,12 +34,7 @@ public class Quest {
         }
     }
 
-    /**
-     * Метод по подготовке квеста
-     *
-     * @param chopped (разделённые страницы квеста в текстовом представлении)
-     * @return result (сформированный пакет квестовых страниц в пошаговом представлении)
-     */
+
     private ArrayList<Step> prepare(String[] chopped) {
         ArrayList<Step> result = new ArrayList<>();
         for (int i = 0; i < chopped.length; i++) {
@@ -79,11 +68,7 @@ public class Quest {
         return result;
     }
 
-    /**
-     * @param s         (строка, из которой мы будем брать значения id)
-     * @param positions (позиции, в которых эти id находятся)
-     * @return сформированный список позиций
-     */
+
     private ArrayList<Integer> prepareIds(String s, ArrayList<Integer> positions) {
         ArrayList<Integer> result = new ArrayList<>();
         for (int i = 0; i < positions.size(); i++) {
@@ -98,12 +83,10 @@ public class Quest {
         return result;
     }
 
-    /**
-     * Main-метод, запускающий работу всей программы
-     */
+
     public void go() {
         boolean isNotEnd = true; // квест будет крутиться, пока мы не присвоим в эту переменную false
-        Step current = quest.get(0); // начинаем с нолевого элемента
+        Step current = quest.get(0); // начинаем с нулевого элемента
         while (isNotEnd) {
             int result = current.show();
             isNotEnd = result != -1; // проверяем, что квест ещё не закончился
@@ -119,13 +102,7 @@ public class Quest {
         }
     }
 
-    /**
-     * Поиск id запрошенного следующего шага квеста
-     *
-     * @param curr   (текущий шаг квеста)
-     * @param result (запрошенный порядковый номер id нового шага)
-     * @return id нового шага
-     */
+
     private int findNext(Step curr, int result) {
         int idNumber = -1;
         switch (result) {
